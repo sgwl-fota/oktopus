@@ -1,6 +1,6 @@
 .PHONY: help build release
 
-DOCKER_USER ?= oktopusp
+DOCKER_USER ?= damowangdocker
 DOCKER_APP ?= obuspa
 DOCKER_TAG ?= $(shell git log --format="%h" -n 1)
 GIT_REPO ?= https://github.com/BroadbandForum/obuspa

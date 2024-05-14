@@ -1,7 +1,7 @@
 .PHONY: help build
 
 .DEFAULT_GOAL := help
-DOCKER_USER ?= oktopusp
+DOCKER_USER ?= damowangdocker
 
 help:
 	@echo "Makefile arguments:"
@@ -23,32 +23,32 @@ help:
 build: build-frontend build-backend
 
 build-backend:
-	@make build -C ../backend/services/controller/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/acs/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/utils/socketio/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/mtp/adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/mtp/ws-adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/mtp/ws/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/mtp/mqtt-adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/mtp/mqtt/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/mtp/stomp-adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make build -C ../backend/services/mtp/stomp/build/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/controller/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/acs/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/utils/socketio/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/mtp/adapter/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/mtp/ws-adapter/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/mtp/ws/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/mtp/mqtt-adapter/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/mtp/mqtt/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/mtp/stomp-adapter/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../backend/services/mtp/stomp/ DOCKER_USER=${DOCKER_USER}
 
 build-frontend:
-	@make build -C ../frontend/build/ DOCKER_USER=${DOCKER_USER}
+	@make build -C ../frontend/ DOCKER_USER=${DOCKER_USER}
 
 release: release-frontend release-backend
 
 release-backend:
-	@make release -C ../backend/services/controller/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/utils/socketio/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/mtp/adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/mtp/ws-adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/mtp/ws/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/mtp/mqtt-adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/mtp/mqtt/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/mtp/stomp-adapter/build/ DOCKER_USER=${DOCKER_USER}
-	@make release -C ../backend/services/mtp/stomp/build/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/controller/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/utils/socketio/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/mtp/adapter/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/mtp/ws-adapter/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/mtp/ws/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/mtp/mqtt-adapter/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/mtp/mqtt/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/mtp/stomp-adapter/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/mtp/stomp/ DOCKER_USER=${DOCKER_USER}
 
 release-frontend:
-	@make release -C ../frontend/build/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../frontend/ DOCKER_USER=${DOCKER_USER}
