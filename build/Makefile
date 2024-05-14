@@ -41,6 +41,7 @@ release: release-frontend release-backend
 
 release-backend:
 	@make release -C ../backend/services/controller/ DOCKER_USER=${DOCKER_USER}
+	@make release -C ../backend/services/acs/ DOCKER_USER=${DOCKER_USER}
 	@make release -C ../backend/services/utils/socketio/ DOCKER_USER=${DOCKER_USER}
 	@make release -C ../backend/services/mtp/adapter/ DOCKER_USER=${DOCKER_USER}
 	@make release -C ../backend/services/mtp/ws-adapter/ DOCKER_USER=${DOCKER_USER}
