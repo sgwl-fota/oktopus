@@ -18,7 +18,7 @@ services:
 
 #/* ------------------------ API REST / USP Controller ----------------------- */
   controller:
-    image: 'oktopusp/controller'
+    image: 'damowangdocker/controller'
     container_name: controlller
     ports:
     - 8000:8000
@@ -49,32 +49,32 @@ services:
 
 #/* ----------------------- Message Transfer Protocols ----------------------- */
   mqtt:
-    image: 'oktopusp/mqtt'
+    image: 'damowangdocker/mqtt'
     container_name: mqtt
     ports:
     - 1883:1883
     - 8883:8883
     env_file:
-      - .env.mqtt
+      - '.env.mqtt'
     networks:
       usp_network:
         ipv4_address: 172.16.235.6
     profiles: [mqtt]
 
   ws:
-    image: 'oktopusp/ws'
+    image: 'damowangdocker/ws'
     container_name: websockets
     ports:
     - 8080:8080
     env_file:
-      - .env.ws
+      - '.env.ws'
     networks:
       usp_network:
         ipv4_address: 172.16.235.7
     profiles: [ws]
   
   stomp:
-    image: 'oktopusp/stomp'
+    image: 'damowangdocker/stomp'
     container_name: stomp
     ports:
     - 61613:61613
@@ -86,12 +86,12 @@ services:
 
 #/* --------------- Message transfer Protocols Adapters to NATS -------------- */
   mqtt-adapter:
-    image: 'oktopusp/mqtt-adapter'
+    image: 'damowangdocker/mqtt-adapter'
     container_name: mqtt-adapter
     depends_on:
       - mqtt
     env_file:
-      - .env.mqtt-adapter
+      - '.env.mqtt-adapter'
     networks:
       usp_network:
         ipv4_address: 172.16.235.9
@@ -99,36 +99,36 @@ services:
     
 
   ws-adapter:
-    image: 'oktopusp/ws-adapter'
+    image: 'damowangdocker/ws-adapter'
     container_name: ws-adapter
     depends_on:
       - ws
     env_file:
-      - .env.ws-adapter
+      - '.env.ws-adapter'
     networks:
       usp_network:
         ipv4_address: 172.16.235.10
     profiles: [ws]
   
   stomp-adapter:
-    image: 'oktopusp/stomp-adapter'
+    image: 'damowangdocker/stomp-adapter'
     container_name: stomp-adapter
     depends_on:
       - stomp
     env_file:
-      - .env.stomp-adapter
+      - '.env.stomp-adapter'
     networks:
       usp_network:
         ipv4_address: 172.16.235.11
     profiles: [stomp]
 
   adapter:
-    image: 'oktopusp/adapter'
+    image: 'damowangdocker/adapter'
     container_name: adapter
     depends_on:
       - mongo_usp
     env_file:
-      - .env.adapter
+      - '.env.adapter'
     networks:
       usp_network:
         ipv4_address: 172.16.235.12
@@ -137,12 +137,12 @@ services:
 
 #/* ------------- SocketIO Real Time Communication With Frontend ------------- */
   socketio:
-    image: 'oktopusp/socketio'
+    image: 'damowangdocker/socketio'
     container_name: socketio
     ports:
     - 5000:5000
     env_file:
-      - .env.socketio
+      - '.env.socketio'
     networks:
       usp_network:
         ipv4_address: 172.16.235.13
@@ -151,7 +151,7 @@ services:
 
 #/* -------------------------------- Frontend -------------------------------- */
   frontend:
-    image: 'oktopusp/frontend'
+    image: 'damowangdocker/frontend'
     container_name: frontend
     env_file:
       - .env.frontend
@@ -177,12 +177,12 @@ services:
       - ./portainer_data:/data
   
   acs:
-    image: oktopusp/acs
+    image: 'damowangdocker/acs'
     container_name: acs
     ports:
       - 9292:9292
     env_file:
-      - .env.acs
+      - '.env.acs'
     networks:
       usp_network:
         ipv4_address: 172.16.235.16
